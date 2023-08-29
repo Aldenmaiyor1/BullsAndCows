@@ -2,23 +2,22 @@ import java.util.ArrayList;
 
 public class ComputerNumber extends Number{
 
+
     public void generateNumber() {
-        ArrayList<String> numberList = new ArrayList<String>();
+        ArrayList<Integer> numberList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            numberList.add(String.valueOf(i));
+            numberList.add(i);
         }
         int indexToPop = 0;
-        number = "";
+        String returnList = "";
         for (int i = 0; i < 4; i++) {
             indexToPop =(int) (Math.random() * numberList.size());
-            number += numberList.get(indexToPop);
+            returnList += numberList.get(indexToPop);
             numberList.remove(indexToPop);
         }
+        this.number =  Integer.parseInt(returnList);
     }
 
-    public String getNumber(){
-        return number;
-    }
 
     @Override
     public void guessNumber() {
