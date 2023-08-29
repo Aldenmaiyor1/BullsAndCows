@@ -16,8 +16,14 @@ public class CowsAndBullsGame {
         System.out.println(computersNumber.number);
 
         while (computersNumber.guessCount < 7){
+            System.out.printf("You guess:");
             int playerGuess = computersNumber.guessNumber();
             computersNumber.printCowsAndBulls(playerGuess);
+            System.out.println("---");
+            if(computersNumber.bullsCount == 4){
+                System.out.println("You win! :)");
+                return;
+            }
         }
         System.out.println("you lose loser ");
     }

@@ -62,6 +62,7 @@ public abstract class Number {
             }
         }
         cows = cows - bulls;
+        bullsCount = bulls;
         System.out.println(String.format("Result: %d bull and %d cows", bulls, cows));
     }
 
