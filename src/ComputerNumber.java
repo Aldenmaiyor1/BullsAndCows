@@ -10,7 +10,7 @@ public class ComputerNumber extends Number {
         int indexToPop = 0;
         String returnList = "";
         for (int i = 0; i < 4; i++) {
-            indexToPop = (int) (Math.random() * numberList.size());
+            indexToPop = (int) (Math.random() * (numberList.size()-1));
             returnList += numberList.get(indexToPop);
             numberList.remove(indexToPop);
         }

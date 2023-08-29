@@ -36,7 +36,7 @@ public class PlayerNumber extends Number{
         System.out.println("2. Medium");
         System.out.println("3. Hard");
 
-        String difficulty = Keyboard.readInput();
+        String difficulty = Keyboard.readInput().trim();
 
         if (difficulty.equalsIgnoreCase("easy")){
             System.out.println("you chose the easy ai");
