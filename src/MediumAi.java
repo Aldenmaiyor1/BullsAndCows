@@ -9,7 +9,8 @@ public class MediumAi implements Ai{
         int guessedNum = 0;
         String returnList="";
 
-        while(!guessedNumbers.contains(guessedNum)) {
+        while(guessedNumbers.contains(guessedNum)) {
+            numberList.clear();
             for (int i = 0; i < 10; i++) {
                 numberList.add(i);
             }
@@ -20,9 +21,8 @@ public class MediumAi implements Ai{
                 returnList += numberList.get(indexToPop);
                 numberList.remove(indexToPop);
             }
+            guessedNum = Integer.parseInt(returnList);
         }
-//        finish the medium ai
-        guessedNum = Integer.parseInt(returnList);
         this.guessedNumbers.add(guessedNum);
         return guessedNum;
     }
