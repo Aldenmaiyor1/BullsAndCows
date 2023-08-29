@@ -38,7 +38,7 @@ public class PlayerNumber extends Number{
     }
 
     public boolean repeatDigits(ArrayList<Integer> i){
-        for (int j = 0; j < i.size() - 2; j++) {
+        for (int j = 0; j < i.size() - 1; j++) {
             ArrayList<Integer> m = new ArrayList<>(i);
             m.remove(j);
             if(m.contains(i.get(j))) {
