@@ -3,16 +3,18 @@ import java.util.ArrayList;
 public class PlayerNumber extends Number{
 
     @Override
-    public void generateNumber() {
+    public int generateNumber() {
         boolean valid = false;
+        int returnNumber=0;
         while (!valid) {
             try {
-                this.number = Integer.parseInt(Keyboard.readInput().trim());
+                returnNumber = Integer.parseInt(Keyboard.readInput().trim());
                 valid = true;
             } catch (NumberFormatException e) {
                 System.out.println("this is not a number");
             }
         }
+        return returnNumber;
     }
 
     @Override

@@ -5,13 +5,13 @@ public abstract class Number {
     public int number;
     public int guessCount;
 
-    public abstract void generateNumber();
+    public abstract int generateNumber();
 
     public abstract void guessNumber();
 
-    public boolean isValidNumber() {
+    public boolean isValidNumber(int checkedNumber) {
         ArrayList<Integer> tempNumberList = new ArrayList<>();
-        int tempNumberWhile = this.number;
+        int tempNumberWhile = checkedNumber;
         while (tempNumberWhile > 0) {
             tempNumberList.add(tempNumberWhile % 10);
             tempNumberWhile /= 10;
@@ -24,7 +24,6 @@ public abstract class Number {
                 System.out.println("the digits have to be unique");
                 return false;
             }
-            System.out.println(String.format("your code is %d", this.number));
             return true;
         }
         return false;

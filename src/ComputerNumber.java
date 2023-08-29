@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class ComputerNumber extends Number{
 
 
-    public void generateNumber() {
+    public int generateNumber() {
         ArrayList<Integer> numberList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             numberList.add(i);
@@ -15,13 +15,13 @@ public class ComputerNumber extends Number{
             returnList += numberList.get(indexToPop);
             numberList.remove(indexToPop);
         }
-        this.number =  Integer.parseInt(returnList);
+        return Integer.parseInt(returnList);
     }
 
 
     @Override
     public void guessNumber() {
-
+        int playerGuess = Integer.parseInt(Keyboard.readInput());
     }
 
     public static void main(String[] args) {
