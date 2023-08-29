@@ -39,9 +39,17 @@ public class PlayerNumber extends Number{
         String difficulty = Keyboard.readInput();
 
         if (difficulty.equalsIgnoreCase("easy")){
+            System.out.println("you chose the easy ai");
             aiLevel = new EasyAi();
         } else if (difficulty.equalsIgnoreCase("medium")) {
-            aiLevel = new
+            System.out.println("you chose the medium ai");
+            aiLevel = new MediumAi();
+        } else if (difficulty.equalsIgnoreCase("hard")) {
+            System.out.println("you chose the hard ai");
+            aiLevel = new HardAi();
+        } else{
+            System.out.println("you didnt chose any ai");
+            return;
         }
     }
 }

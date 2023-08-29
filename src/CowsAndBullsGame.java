@@ -1,8 +1,11 @@
 public class CowsAndBullsGame {
 
     public void start(){
-        Number playersNumber = new PlayerNumber();
-        Number computersNumber = new ComputerNumber();
+        PlayerNumber playersNumber = new PlayerNumber();
+        ComputerNumber computersNumber = new ComputerNumber();
+
+        playersNumber.setAiLevel();
+
         int playerBaseNumber = 0;
         while (!playersNumber.isValidNumber(playerBaseNumber)){
             System.out.println("please enter your secret code:");
@@ -19,6 +22,9 @@ public class CowsAndBullsGame {
             System.out.printf("You guess:");
             int playerGuess = computersNumber.guessNumber();
             computersNumber.printCowsAndBulls(playerGuess);
+            int computerGuess = playersNumber.guessNumber();
+            System.out.println(String.format("Computer Guess: %d", computerGuess));
+            playersNumber.printCowsAndBulls(computerGuess);
             System.out.println("---");
             if(computersNumber.bullsCount == 4){
                 System.out.println("You win! :)");
