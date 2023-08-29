@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class ComputerNumber extends Number{
+public class ComputerNumber extends Number {
 
     public int generateNumber() {
         ArrayList<Integer> numberList = new ArrayList<>();
@@ -10,7 +10,7 @@ public class ComputerNumber extends Number{
         int indexToPop = 0;
         String returnList = "";
         for (int i = 0; i < 4; i++) {
-            indexToPop =(int) (Math.random() * numberList.size());
+            indexToPop = (int) (Math.random() * numberList.size());
             returnList += numberList.get(indexToPop);
             numberList.remove(indexToPop);
         }
@@ -22,8 +22,8 @@ public class ComputerNumber extends Number{
     public int guessNumber() {
         int playerGuess = 0;
 
-        while(!isValidNumber(playerGuess)){
-            playerGuess =Integer.parseInt(Keyboard.readInput());
+        while (!isValidNumber(playerGuess)) {
+            playerGuess = Integer.parseInt(Keyboard.readInput());
         }
         this.guessCount++;
         return playerGuess;

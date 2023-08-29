@@ -21,6 +21,7 @@ public class MediumAi implements Ai{
                 numberList.remove(indexToPop);
             }
         }
+//        finish the medium ai
         guessedNum = Integer.parseInt(returnList);
         this.guessedNumbers.add(guessedNum);
         return guessedNum;

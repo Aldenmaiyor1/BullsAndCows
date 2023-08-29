@@ -18,6 +18,7 @@ public class CowsAndBullsGame {
         System.out.println(playersNumber.number);
         System.out.println(computersNumber.number);
 
+        /*alter running code to include winning conditions based on turn, ie if i go first then i win*/
         while (computersNumber.guessCount < 7){
             System.out.printf("You guess:");
             int playerGuess = computersNumber.guessNumber();
