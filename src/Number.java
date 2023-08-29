@@ -5,7 +5,6 @@ public abstract class Number {
     public int number;
     public int guessCount;
     public int bullsCount;
-    public int cowsCount;
 
     public abstract int generateNumber();
 

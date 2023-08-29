@@ -1,7 +1,9 @@
+import java.security.Key;
 import java.util.ArrayList;
 
 public class PlayerNumber extends Number{
 
+    public Ai aiLevel;
     @Override
     public int generateNumber() {
         boolean valid = false;
@@ -19,12 +21,27 @@ public class PlayerNumber extends Number{
 
     @Override
     public int guessNumber() {
-        return 0;
+        return aiLevel.guessNumber();
     }
 
     public static void main(String[] args) {
         PlayerNumber m = new PlayerNumber();
         m.generateNumber();
         System.out.println(m.number);
+    }
+
+    public void setAiLevel(){
+        System.out.println("please enter a difficulty");
+        System.out.println("1. Easy");
+        System.out.println("2. Medium");
+        System.out.println("3. Hard");
+
+        String difficulty = Keyboard.readInput();
+
+        if (difficulty.equalsIgnoreCase("easy")){
+            aiLevel = new EasyAi();
+        } else if (difficulty.equalsIgnoreCase("medium")) {
+            aiLevel = new
+        }
     }
 }

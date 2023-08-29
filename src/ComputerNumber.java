@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class ComputerNumber extends Number{
 
-    public Ai aiLevel;
     public int generateNumber() {
         ArrayList<Integer> numberList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {

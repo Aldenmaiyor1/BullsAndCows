@@ -1,4 +1,4 @@
 public interface Ai {
 
-    String guessNumber();
+    int guessNumber();
 }
