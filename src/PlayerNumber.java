@@ -18,8 +18,8 @@ public class PlayerNumber extends Number{
     }
 
     @Override
-    public void guessNumber() {
-
+    public int guessNumber() {
+        return 0;
     }
 
     public static void main(String[] args) {

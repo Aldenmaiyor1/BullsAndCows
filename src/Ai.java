@@ -1,4 +1,4 @@
-public interface ai {
+public interface Ai {
 
     String guessNumber();
 }

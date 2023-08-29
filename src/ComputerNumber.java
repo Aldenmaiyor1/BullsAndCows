@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class ComputerNumber extends Number{
 
-
+    public Ai aiLevel;
     public int generateNumber() {
         ArrayList<Integer> numberList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -20,8 +20,14 @@ public class ComputerNumber extends Number{
 
 
     @Override
-    public void guessNumber() {
-        int playerGuess = Integer.parseInt(Keyboard.readInput());
+    public int guessNumber() {
+        int playerGuess = 0;
+
+        while(!isValidNumber(playerGuess)){
+            playerGuess =Integer.parseInt(Keyboard.readInput());
+        }
+        this.guessCount++;
+        return playerGuess;
     }
 
     public static void main(String[] args) {

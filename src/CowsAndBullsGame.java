@@ -5,6 +5,7 @@ public class CowsAndBullsGame {
         Number computersNumber = new ComputerNumber();
         int playerBaseNumber = 0;
         while (!playersNumber.isValidNumber(playerBaseNumber)){
+            System.out.println("please enter your secret code:");
             playerBaseNumber = playersNumber.generateNumber();
         }
         playersNumber.number = playerBaseNumber;
@@ -13,6 +14,12 @@ public class CowsAndBullsGame {
 
         System.out.println(playersNumber.number);
         System.out.println(computersNumber.number);
+
+        while (computersNumber.guessCount < 7){
+            int playerGuess = computersNumber.guessNumber();
+            computersNumber.printCowsAndBulls(playerGuess);
+        }
+        System.out.println("you lose loser ");
     }
     public static void main(String[] args) {
         CowsAndBullsGame cowsAndBulls = new CowsAndBullsGame();
