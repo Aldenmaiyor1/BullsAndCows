@@ -2,17 +2,17 @@ import java.util.ArrayList;
 
 public class MediumAi implements Ai{
 
-    public ArrayList<Integer> guessedNumbers = new ArrayList<>();
+    public ArrayList<String> guessedNumbers = new ArrayList<>();
 
-    public int guessNumber(){
-        ArrayList<Integer> numberList = new ArrayList<>();
-        int guessedNum = 0;
+    public String guessNumber(){
+        ArrayList<String> numberList = new ArrayList<>();
+        String guessedNum = "";
         String returnList="";
 
         while(guessedNumbers.contains(guessedNum)) {
             numberList.clear();
             for (int i = 0; i < 10; i++) {
-                numberList.add(i);
+                numberList.add(String.valueOf(i));
             }
             int indexToPop = 0;
             returnList = "";
@@ -21,7 +21,7 @@ public class MediumAi implements Ai{
                 returnList += numberList.get(indexToPop);
                 numberList.remove(indexToPop);
             }
-            guessedNum = Integer.parseInt(returnList);
+            guessedNum = returnList;
         }
         this.guessedNumbers.add(guessedNum);
         return guessedNum;

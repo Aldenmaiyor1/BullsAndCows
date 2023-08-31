@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class EasyAi implements Ai{
     @Override
-    public int guessNumber(){
+    public String guessNumber(){
         ArrayList<Integer> numberList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             numberList.add(i);
@@ -14,6 +14,6 @@ public class EasyAi implements Ai{
             returnList += numberList.get(indexToPop);
             numberList.remove(indexToPop);
         }
-        return Integer.parseInt(returnList);
+        return returnList;
     }
 }

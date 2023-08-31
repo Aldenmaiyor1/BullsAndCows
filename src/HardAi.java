@@ -1,7 +1,15 @@
-public class HardAi implements Ai{
+import java.util.ArrayList;
 
+public class HardAi implements Ai{
+    public ArrayList<Integer> possibleAnswers;
 //    maybe use the bull and cow logic on a list of the numbers? idk
-    public int guessNumber(){
-        return 0;
+    public String guessNumber(){
+
+        return "0";
     }
+
+    public void setPossibleAnswers(){
+
+    }
+
 }

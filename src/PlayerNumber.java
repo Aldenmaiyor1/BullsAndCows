@@ -5,7 +5,7 @@ public class PlayerNumber extends Number{
 
     public Ai aiLevel;
     @Override
-    public int generateNumber() {
+    public String generateNumber() {
         boolean valid = false;
         int returnNumber=0;
         while (!valid) {
@@ -16,11 +16,11 @@ public class PlayerNumber extends Number{
                 System.out.println("this is not a number");
             }
         }
-        return returnNumber;
+        return String.valueOf(returnNumber);
     }
 
     @Override
-    public int guessNumber() {
+    public String guessNumber() {
         return aiLevel.guessNumber();
     }
 
