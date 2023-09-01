@@ -4,7 +4,7 @@ public class CowsAndBullsGame {
         PlayerNumber playersNumber = new PlayerNumber();
         ComputerNumber computersNumber = new ComputerNumber();
 
-        playersNumber.setAiLevel();
+        computersNumber.setAiLevel();
 
         String playerBaseNumber = "";
         while (!playersNumber.isValidNumber(playerBaseNumber)){
@@ -15,20 +15,41 @@ public class CowsAndBullsGame {
         System.out.println(String.format("your code is %s", playersNumber.number));
         computersNumber.number = computersNumber.generateNumber();
 
-        System.out.println(playersNumber.number);
-        System.out.println(computersNumber.number);
+//        System.out.println(playersNumber.number);
+//        System.out.println(computersNumber.number);
 
         /*alter running code to include winning conditions based on turn, ie if i go first then i win*/
-        while (computersNumber.guessCount < 7){
+        int playerBulls = 0;
+        int playerCows = 0;
+        int computerBulls = 0;
+        int computerCows = 0;
+
+        while (playersNumber.guessCount < 7){
             System.out.printf("You guess:");
-            String playerGuess = computersNumber.guessNumber();
-            computersNumber.printCowsAndBulls(playerGuess);
-            String computerGuess = playersNumber.guessNumber();
-            System.out.println(String.format("Computer Guess: %s", computerGuess));
-            playersNumber.printCowsAndBulls(computerGuess);
-            System.out.println("---");
-            if(computersNumber.bullsCount == 4){
+            String playerGuess = playersNumber.guessNumber();
+            playerBulls = playersNumber.checkBulls(playerGuess, computersNumber.number);
+            playerCows = playersNumber.checkCows(playerGuess, computersNumber.number);
+            System.out.println(String.format("Result: %d bulls and %d cows", playerBulls, playerCows));
+            if(playerBulls == 4){
                 System.out.println("You win! :)");
+                return;
+            }
+
+            String computerGuess = computersNumber.guessNumber();
+            System.out.println(String.format("Computer Guess: %s", computerGuess));
+            computerBulls = computersNumber.checkBulls(computerGuess, playersNumber.number);
+            computerCows = computersNumber.checkCows(computerGuess, playersNumber.number);
+            if(computersNumber.aiLevel instanceof HardAi){
+                ((HardAi) computersNumber.aiLevel).setBullsAndCows(computerBulls, computerCows);
+                ((HardAi) computersNumber.aiLevel).trimPossibleNumbers(computerGuess);
+            }
+            System.out.println(String.format("Result: %d bulls and %d cows", computerBulls, computerCows));
+            System.out.println(((HardAi) computersNumber.aiLevel).possibleAnswers.size());
+            System.out.println("-----------");
+
+            if(computerBulls == 4){
+                System.out.println(computersNumber.number);
+                System.out.println("Computer wins! :)");
                 return;
             }
         }

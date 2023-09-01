@@ -44,25 +44,31 @@ public abstract class Number {
         return tempNumberList;
     }
 
-    public void printCowsAndBulls(String guess){
+    public int checkBulls(String guess, String correctNumber){
         ArrayList<String> guessList = convertToList(guess);
-        ArrayList<String> correctNumberList = convertToList(this.number);
+        ArrayList<String> correctNumberList = convertToList(correctNumber);
         int bulls = 0;
-        int cows = 0;
         for (int i = 0; i < guessList.size(); i++) {
-            if(guessList.get(i) == correctNumberList.get(i)){
+            if(guessList.get(i).equals(correctNumberList.get(i))){
                 bulls++;
             }
         }
+
+        return bulls;
+    }
+
+    public int checkCows(String guess, String correctNumber){
+        ArrayList<String> guessList = convertToList(guess);
+        ArrayList<String> correctNumberList = convertToList(correctNumber);
+
+        int cows = 0;
         for (int i = 0; i < guessList.size(); i++) {
             if (correctNumberList.contains(guessList.get(i))){
                 cows++;
             }
         }
-        cows = cows - bulls;
-        cowsCount = cows;
-        bullsCount = bulls;
-        System.out.println(String.format("Result: %d bull and %d cows", bulls, cows));
+        cows = cows - checkBulls(guess, correctNumber);
+        return cows;
     }
 
     public void setAiLevel(){
@@ -81,7 +87,7 @@ public abstract class Number {
             aiLevel = new MediumAi();
         } else if (difficulty.equalsIgnoreCase("hard")) {
             System.out.println("you chose the hard ai");
-            aiLevel = new HardAi(this.number);
+            aiLevel = new HardAi();
         } else{
             System.out.println("you didnt chose any ai");
             return;

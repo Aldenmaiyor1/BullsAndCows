@@ -19,14 +19,9 @@ public class ComputerNumber extends Number {
 
 
     @Override
-    public String guessNumber() {
-        String playerGuess = "";
 
-        while (!isValidNumber(playerGuess)) {
-            playerGuess = Keyboard.readInput();
-        }
-        this.guessCount++;
-        return playerGuess;
+    public String guessNumber() {
+        return aiLevel.guessNumber();
     }
 
     public static void main(String[] args) {

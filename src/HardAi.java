@@ -1,55 +1,58 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 
-public class HardAi extends ComputerNumber implements Ai{
+public class HardAi implements Ai{
     public ArrayList<String> possibleAnswers;
+    public int bullsCount;
+    public int cowsCount;
 
-    public HardAi(String number){
+
+    public HardAi(){
         this.possibleAnswers = setPossibleAnswers();
-        this.number = number;
+        bullsCount = 10;
+        cowsCount = 10;
     }
     public String guessNumber(){
-        int guessedIndex = (int) (Math.random() * (possibleAnswers.size() +1));
-        String guess = possibleAnswers.get(guessedIndex);
-        trimPossibleNumbers(guess);
+        int guessedIndex = (int) (Math.random() * (this.possibleAnswers.size()));
+        String guess = this.possibleAnswers.get(guessedIndex);
         return guess;
     }
 
-
     public void trimPossibleNumbers(String guess){
+        ArrayList<String> posNum = new ArrayList<>();
         for (int i = 0; i < possibleAnswers.size(); i++) {
-            if (!sameBullsAndCows(possibleAnswers.get(i), guess)){
-                this.possibleAnswers.remove(i);
+            if (sameBullsAndCows(possibleAnswers.get(i), guess)){
+                posNum.add(possibleAnswers.get(i));
             }
         }
+        this.possibleAnswers = posNum;
     }
-   public boolean sameBullsAndCows(String possibleNumber, String guess){
+
+    public void setBullsAndCows(int bulls, int cows){
+        this.bullsCount = bulls;
+        this.cowsCount = cows;
+    }
+
+    public boolean sameBullsAndCows(String possibleNumber, String guess) {
         int potCows = 0;
         int potBulls = 0;
         ArrayList<String> possibleNumberArray = convertToList(possibleNumber);
         ArrayList<String> guessArray = convertToList(guess);
-       for (int i = 0; i < possibleNumberArray.size(); i++) {
-           if (possibleNumberArray.get(i).equals(guessArray.get(i))){
-               potBulls ++;
-           }
-       }
-       for (int i = 0; i < possibleNumberArray.size(); i++) {
-           if (possibleNumberArray.contains(guessArray.get(i))){
-               potCows++;
-           }
-       }
-       potCows = potCows-potBulls;
-       if (potBulls == this.bullsCount && potCows == this.cowsCount){
-           return true;
-       }
+        for (int i = 0; i < possibleNumberArray.size(); i++) {
+            if (possibleNumberArray.get(i).equals(guessArray.get(i))) {
+                potBulls++;
+            } else if (possibleNumberArray.contains(guessArray.get(i))) {
+                potCows++;
+            }
+        }
+        if (this.bullsCount == 10 || (potBulls == this.bullsCount && potCows == this.cowsCount)) {
+            return true;
+        }
         return false;
-   }
-
-    public String generateNumber(){
-
-        return "hello";
     }
+
 
     public boolean repeatDigits(String strang){
         ArrayList<String> i = new ArrayList<>();
@@ -77,6 +80,14 @@ public class HardAi extends ComputerNumber implements Ai{
             }
         }
         return possibleAnswerList;
+    }
+
+    public ArrayList<String> convertToList(String num){
+        ArrayList<String> tempNumberList = new ArrayList<>();
+        for (int i = 0; i < num.length(); i++) {
+            tempNumberList.add(String.valueOf(num.charAt(i)));
+        }
+        return tempNumberList;
     }
 
 }
