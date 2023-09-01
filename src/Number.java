@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
 public abstract class Number {
-
+    public Ai aiLevel;
     public String number;
     public int guessCount;
     public int bullsCount;
+    public int cowsCount;
 
     public abstract String generateNumber();
 
@@ -59,8 +60,32 @@ public abstract class Number {
             }
         }
         cows = cows - bulls;
+        cowsCount = cows;
         bullsCount = bulls;
         System.out.println(String.format("Result: %d bull and %d cows", bulls, cows));
+    }
+
+    public void setAiLevel(){
+        System.out.println("please enter a difficulty");
+        System.out.println("1. Easy");
+        System.out.println("2. Medium");
+        System.out.println("3. Hard");
+
+        String difficulty = Keyboard.readInput().trim();
+
+        if (difficulty.equalsIgnoreCase("easy")){
+            System.out.println("you chose the easy ai");
+            aiLevel = new EasyAi();
+        } else if (difficulty.equalsIgnoreCase("medium")) {
+            System.out.println("you chose the medium ai");
+            aiLevel = new MediumAi();
+        } else if (difficulty.equalsIgnoreCase("hard")) {
+            System.out.println("you chose the hard ai");
+            aiLevel = new HardAi(this.number);
+        } else{
+            System.out.println("you didnt chose any ai");
+            return;
+        }
     }
 
 }
