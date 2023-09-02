@@ -1,3 +1,4 @@
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
@@ -88,6 +89,12 @@ public class HardAi implements Ai{
             tempNumberList.add(String.valueOf(num.charAt(i)));
         }
         return tempNumberList;
+    }
+
+    public static void main(String[] args) {
+        File f1 = new File("myfile.txt");
+        f1.mkdirs();
+        System.out.println(f1.exists());;
     }
 
 }

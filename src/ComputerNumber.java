@@ -27,6 +27,6 @@ public class ComputerNumber extends Number {
     public static void main(String[] args) {
         ComputerNumber m = new ComputerNumber();
         m.generateNumber();
-        System.out.println(m.number);
+        System.out.println("hello van");
     }
 }
