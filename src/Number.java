@@ -3,13 +3,9 @@ import java.util.ArrayList;
 public abstract class Number {
     public Ai aiLevel;
     public String number;
-    public int guessCount;
+    public int guessCount = 1;
     public int bullsCount;
     public int cowsCount;
-
-    public abstract String generateNumber();
-
-    public abstract String guessNumber();
 
     public boolean isValidNumber(String checkedNumber) {
         ArrayList<String> tempNumberList = convertToList(checkedNumber);
@@ -53,18 +49,31 @@ public abstract class Number {
                 bulls++;
             }
         }
-
         return bulls;
     }
 
     public int checkCows(String guess, String correctNumber){
         ArrayList<String> guessList = convertToList(guess);
         ArrayList<String> correctNumberList = convertToList(correctNumber);
-
         int cows = 0;
+
         for (int i = 0; i < guessList.size(); i++) {
-            if (correctNumberList.contains(guessList.get(i))){
+            if(correctNumberList.contains(guessList.get(i))){
                 cows++;
+                correctNumberList.remove(i);
+            }
+        }
+
+
+
+
+        for (int j = 0; j < guess.length(); j++) {
+            char letter = guess.charAt(j);
+            for (int i = 0; i < guess.length(); i++) {
+                char charAt = correctNumber.charAt(i);
+                if (charAt == letter) {
+                    cows++;
+                }
             }
         }
         cows = cows - checkBulls(guess, correctNumber);
@@ -79,13 +88,13 @@ public abstract class Number {
 
         String difficulty = Keyboard.readInput().trim();
 
-        if (difficulty.equalsIgnoreCase("easy")){
+        if (difficulty.equalsIgnoreCase("easy") || difficulty.equalsIgnoreCase("1") ){
             System.out.println("you chose the easy ai");
             aiLevel = new EasyAi();
-        } else if (difficulty.equalsIgnoreCase("medium")) {
+        } else if (difficulty.equalsIgnoreCase("medium") || difficulty.equalsIgnoreCase("2") ) {
             System.out.println("you chose the medium ai");
             aiLevel = new MediumAi();
-        } else if (difficulty.equalsIgnoreCase("hard")) {
+        } else if (difficulty.equalsIgnoreCase("hard") || difficulty.equalsIgnoreCase("3") ) {
             System.out.println("you chose the hard ai");
             aiLevel = new HardAi();
         } else{

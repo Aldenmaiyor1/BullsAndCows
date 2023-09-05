@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class PlayerNumber extends Number{
 
-    @Override
     public String generateNumber() {
         boolean valid = false;
         int returnNumber=0;
@@ -24,7 +23,6 @@ public class PlayerNumber extends Number{
         return returnNumberString;
     }
 
-    @Override
     public String guessNumber() {
         String playerGuess = "";
 

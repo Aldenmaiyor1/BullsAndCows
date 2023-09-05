@@ -17,16 +17,9 @@ public class ComputerNumber extends Number {
         return returnList;
     }
 
-
-    @Override
-
     public String guessNumber() {
         return aiLevel.guessNumber();
     }
 
-    public static void main(String[] args) {
-        ComputerNumber m = new ComputerNumber();
-        m.generateNumber();
-        System.out.println("hello van");
-    }
+
 }

@@ -1,4 +1,13 @@
-public class CowsAndBullsGame {
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class CowsAndBullsGame{
 
     public void start(){
         PlayerNumber playersNumber = new PlayerNumber();
@@ -24,14 +33,24 @@ public class CowsAndBullsGame {
         int computerBulls = 0;
         int computerCows = 0;
 
-        while (playersNumber.guessCount < 7){
+        Map<String,ArrayList<String>> output = new HashMap<String,ArrayList<String>>();
+
+        while (playersNumber.guessCount < 8){
+            String x = String.valueOf(playersNumber.guessCount);
+            output.put(x, new ArrayList<>());
             System.out.printf("You guess:");
             String playerGuess = playersNumber.guessNumber();
             playerBulls = playersNumber.checkBulls(playerGuess, computersNumber.number);
             playerCows = playersNumber.checkCows(playerGuess, computersNumber.number);
             System.out.println(String.format("Result: %d bulls and %d cows", playerBulls, playerCows));
+
+            output.get(x).add(playerGuess);
+            output.get(x).add(String.valueOf(playerBulls));
+            output.get(x).add(String.valueOf(playerCows));
+
             if(playerBulls == 4){
                 System.out.println("You win! :)");
+                fileOutput(output, playersNumber.number,computersNumber.number);
                 return;
             }
 
@@ -43,20 +62,60 @@ public class CowsAndBullsGame {
                 ((HardAi) computersNumber.aiLevel).setBullsAndCows(computerBulls, computerCows);
                 ((HardAi) computersNumber.aiLevel).trimPossibleNumbers(computerGuess);
             }
+            output.get(x).add(computerGuess);
+            output.get(x).add(String.valueOf(computerBulls));
+            output.get(x).add(String.valueOf(computerCows));
             System.out.println(String.format("Result: %d bulls and %d cows", computerBulls, computerCows));
-            System.out.println(((HardAi) computersNumber.aiLevel).possibleAnswers.size());
             System.out.println("-----------");
 
             if(computerBulls == 4){
-                System.out.println(computersNumber.number);
                 System.out.println("Computer wins! :)");
+                fileOutput(output, playersNumber.number,computersNumber.number);
                 return;
+
             }
         }
+        fileOutput(output, playersNumber.number,computersNumber.number);
         System.out.println("you lose loser ");
     }
     public static void main(String[] args) {
         CowsAndBullsGame cowsAndBulls = new CowsAndBullsGame();
         cowsAndBulls.start();
+    }
+
+    public void fileOutput(Map<String,ArrayList<String>> outputList,String playerNumber, String computerNumber){
+
+        String yesOrNo = "";
+        while (true) {
+            System.out.println("do you want to save game? \n Y/N");
+            yesOrNo = Keyboard.readInput();
+            if (yesOrNo.equalsIgnoreCase("Y") || yesOrNo.equalsIgnoreCase("n")) {
+                break;
+            }
+        }
+        if (yesOrNo.equalsIgnoreCase("y")) {
+            System.out.println("Please enter file name: ");
+            String fileName = Keyboard.readInput();
+            try {
+                PrintWriter writer = new PrintWriter(new FileWriter(fileName));
+                writer.println("Bulls and Cows game result.");
+                writer.println(String.format("Your code: %s", playerNumber));
+                writer.println(String.format("Computer code: %s", computerNumber));
+                for (Map.Entry<String, ArrayList<String>> element : outputList.entrySet()) {
+                    writer.println("---");
+                    writer.println("turn " + element.getKey());
+                    ArrayList<String> elementList = element.getValue();
+                    writer.println((String.format("You guessed %s, scoring %s bulls and %s cows", elementList.get(0), elementList.get(1), elementList.get(2))));
+                    writer.println((String.format("Computer guessed %s, scoring %s bulls and %s cows", elementList.get(3), elementList.get(4), elementList.get(5))));
+                }
+                writer.close();
+                System.out.println("File saved under \"" + fileName + "\"");
+                System.out.println("Thanks for playing");
+            } catch (IOException e) {
+                System.out.println("IO error");
+            }
+        }else {
+            System.out.println("Thanks for playing");
+        }
     }
 }

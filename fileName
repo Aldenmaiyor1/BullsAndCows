@@ -1,0 +1,27 @@
+Bulls and Cows game result.
+Your code: 1234
+Computer code: 8074
+---
+turn 1
+You guessed 1234, scoring 1 bulls and 0 cows
+Computer guessed 4608, scoring 0 bulls and 1 cows
+---
+turn 2
+You guessed 1234, scoring 1 bulls and 0 cows
+Computer guessed 5961, scoring 0 bulls and 1 cows
+---
+turn 3
+You guessed 1234, scoring 1 bulls and 0 cows
+Computer guessed 7134, scoring 2 bulls and 1 cows
+---
+turn 4
+You guessed 1234, scoring 1 bulls and 0 cows
+Computer guessed 8137, scoring 1 bulls and 1 cows
+---
+turn 5
+You guessed 1234, scoring 1 bulls and 0 cows
+Computer guessed 3124, scoring 1 bulls and 3 cows
+---
+turn 6
+You guessed 1234, scoring 1 bulls and 0 cows
+Computer guessed 1234, scoring 4 bulls and 0 cows
