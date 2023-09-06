@@ -88,11 +88,13 @@ public class Wordle extends Number{
             if (bulls == 5){
                 System.out.println("you guessed the right number!");
                 System.out.println("you win!");
+                fileOutput(output,correctWord);
                 return;
             }
             guessCount++;
         }
         System.out.println("you did not guess the right word :( you lose");
+        fileOutput(output, correctWord);
     }
 
     public void fileOutput(Map<String,ArrayList<String>> outputList, String correctWord){

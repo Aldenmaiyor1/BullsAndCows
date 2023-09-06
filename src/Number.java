@@ -58,25 +58,13 @@ public abstract class Number {
         int cows = 0;
 
         for (int i = 0; i < guessList.size(); i++) {
-            if(correctNumberList.contains(guessList.get(i))){
+            if(guessList.contains(correctNumberList.get(i))){
                 cows++;
-                correctNumberList.remove(i);
+                correctNumberList.set(i, null);
             }
         }
 
-
-
-
-        for (int j = 0; j < guess.length(); j++) {
-            char letter = guess.charAt(j);
-            for (int i = 0; i < guess.length(); i++) {
-                char charAt = correctNumber.charAt(i);
-                if (charAt == letter) {
-                    cows++;
-                }
-            }
-        }
-        cows = cows - checkBulls(guess, correctNumber);
+        cows -= checkBulls(guess, correctNumber);
         return cows;
     }
 
