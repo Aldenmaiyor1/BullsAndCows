@@ -2,10 +2,8 @@ import java.util.ArrayList;
 
 public abstract class Number {
     public Ai aiLevel;
-    public String number;
+    private String number;
     public int guessCount = 1;
-    public int bullsCount;
-    public int cowsCount;
 
     public boolean isValidNumber(String checkedNumber) {
         ArrayList<String> tempNumberList = convertToList(checkedNumber);
@@ -20,6 +18,13 @@ public abstract class Number {
             return true;
         }
         return false;
+    }
+
+    public void setNumber(String num){
+        this.number = num;
+    }
+    public String getNumber(){
+        return this.number;
     }
 
     public boolean repeatDigits(ArrayList<String> i){

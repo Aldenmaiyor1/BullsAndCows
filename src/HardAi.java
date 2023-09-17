@@ -4,34 +4,35 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class HardAi implements Ai{
+public class HardAi implements Ai {
     public ArrayList<String> possibleAnswers;
     public int bullsCount;
     public int cowsCount;
 
 
-    public HardAi(){
+    public HardAi() {
         this.possibleAnswers = setPossibleAnswers();
         bullsCount = 10;
         cowsCount = 10;
     }
-    public String guessNumber(){
+
+    public String guessNumber() {
         int guessedIndex = (int) (Math.random() * (this.possibleAnswers.size()));
         String guess = this.possibleAnswers.get(guessedIndex);
         return guess;
     }
 
-    public void trimPossibleNumbers(String guess){
+    public void trimPossibleNumbers(String guess) {
         ArrayList<String> posNum = new ArrayList<>();
         for (int i = 0; i < possibleAnswers.size(); i++) {
-            if (sameBullsAndCows(possibleAnswers.get(i), guess)){
+            if (sameBullsAndCows(possibleAnswers.get(i), guess)) {
                 posNum.add(possibleAnswers.get(i));
             }
         }
         this.possibleAnswers = posNum;
     }
 
-    public void setBullsAndCows(int bulls, int cows){
+    public void setBullsAndCows(int bulls, int cows) {
         this.bullsCount = bulls;
         this.cowsCount = cows;
     }
@@ -55,7 +56,7 @@ public class HardAi implements Ai{
     }
 
 
-    public boolean repeatDigits(String strang){
+    public boolean repeatDigits(String strang) {
         ArrayList<String> i = new ArrayList<>();
         for (int k = 0; k < strang.length(); k++) {
             i.add(String.valueOf(strang.charAt(k)));
@@ -63,27 +64,29 @@ public class HardAi implements Ai{
         for (int j = 0; j < i.size() - 1; j++) {
             ArrayList<String> m = new ArrayList<>(i);
             m.remove(j);
-            if(m.contains(i.get(j))) {
+            if (m.contains(i.get(j))) {
                 return true;
             }
-        }return false;
+        }
+        return false;
     }
-    public ArrayList<String> setPossibleAnswers(){
+
+    public ArrayList<String> setPossibleAnswers() {
         ArrayList<String> possibleAnswerList = new ArrayList<>();
 
         for (int i = 0; i < 9999; i++) {
             String num = String.valueOf(i);
-            if(num.length() == 3){
-                num = "0" +num;
+            if (num.length() == 3) {
+                num = "0" + num;
             }
-            if (!repeatDigits(num) && num.length()==4){
+            if (!repeatDigits(num) && num.length() == 4) {
                 possibleAnswerList.add(num);
             }
         }
         return possibleAnswerList;
     }
 
-    public ArrayList<String> convertToList(String num){
+    public ArrayList<String> convertToList(String num) {
         ArrayList<String> tempNumberList = new ArrayList<>();
         for (int i = 0; i < num.length(); i++) {
             tempNumberList.add(String.valueOf(num.charAt(i)));
@@ -94,7 +97,7 @@ public class HardAi implements Ai{
     public static void main(String[] args) {
         File f1 = new File("myfile.txt");
         f1.mkdirs();
-        System.out.println(f1.exists());;
+        System.out.println(f1.exists());
     }
 
 }

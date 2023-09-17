@@ -33,9 +33,4 @@ public class PlayerNumber extends Number{
         return playerGuess;
     }
 
-    public static void main(String[] args) {
-        PlayerNumber m = new PlayerNumber();
-        m.generateNumber();
-        System.out.println(m.number);
-    }
 }

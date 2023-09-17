@@ -70,7 +70,6 @@ public class Wordle extends Number{
         System.out.println("Welcome to Wordle!");
         System.out.println("try and guess a 5 letter word");
         setCorrectWord();
-        System.out.println(correctWord);
         Map<String,ArrayList<String>> output = new HashMap<String,ArrayList<String>>();
         while(guessCount < 8){
             String x = String.valueOf(guessCount);
@@ -131,8 +130,4 @@ public class Wordle extends Number{
         }
     }
 
-    public static void main(String[] args) {
-        Wordle m = new Wordle();
-        m.start();
-    }
 }

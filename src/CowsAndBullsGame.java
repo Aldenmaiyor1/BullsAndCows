@@ -20,12 +20,9 @@ public class CowsAndBullsGame{
             System.out.println("please enter your secret code:");
             playerBaseNumber = playersNumber.generateNumber();
         }
-        playersNumber.number = playerBaseNumber;
-        System.out.println(String.format("your code is %s", playersNumber.number));
-        computersNumber.number = computersNumber.generateNumber();
-
-//        System.out.println(playersNumber.number);
-//        System.out.println(computersNumber.number);
+        playersNumber.setNumber(playerBaseNumber);
+        System.out.println(String.format("your code is %s", playersNumber.getNumber()));
+        computersNumber.setNumber(computersNumber.generateNumber());
 
         /*alter running code to include winning conditions based on turn, ie if i go first then i win*/
         int playerBulls = 0;
@@ -40,8 +37,8 @@ public class CowsAndBullsGame{
             output.put(x, new ArrayList<>());
             System.out.printf("You guess:");
             String playerGuess = playersNumber.guessNumber();
-            playerBulls = playersNumber.checkBulls(playerGuess, computersNumber.number);
-            playerCows = playersNumber.checkCows(playerGuess, computersNumber.number);
+            playerBulls = playersNumber.checkBulls(playerGuess, computersNumber.getNumber());
+            playerCows = playersNumber.checkCows(playerGuess, computersNumber.getNumber());
             System.out.println(String.format("Result: %d bulls and %d cows", playerBulls, playerCows));
 
             output.get(x).add(playerGuess);
@@ -50,14 +47,14 @@ public class CowsAndBullsGame{
 
             if(playerBulls == 4){
                 System.out.println("You win! :)");
-                fileOutput(output, playersNumber.number,computersNumber.number);
+                fileOutput(output, playersNumber.getNumber(),computersNumber.getNumber());
                 return;
             }
 
             String computerGuess = computersNumber.guessNumber();
             System.out.println(String.format("Computer Guess: %s", computerGuess));
-            computerBulls = computersNumber.checkBulls(computerGuess, playersNumber.number);
-            computerCows = computersNumber.checkCows(computerGuess, playersNumber.number);
+            computerBulls = computersNumber.checkBulls(computerGuess, playersNumber.getNumber());
+            computerCows = computersNumber.checkCows(computerGuess, playersNumber.getNumber());
             if(computersNumber.aiLevel instanceof HardAi){
                 ((HardAi) computersNumber.aiLevel).setBullsAndCows(computerBulls, computerCows);
                 ((HardAi) computersNumber.aiLevel).trimPossibleNumbers(computerGuess);
@@ -70,17 +67,13 @@ public class CowsAndBullsGame{
 
             if(computerBulls == 4){
                 System.out.println("Computer wins! :)");
-                fileOutput(output, playersNumber.number,computersNumber.number);
+                fileOutput(output, playersNumber.getNumber(),computersNumber.getNumber());
                 return;
 
             }
         }
-        fileOutput(output, playersNumber.number,computersNumber.number);
+        fileOutput(output, playersNumber.getNumber(),computersNumber.getNumber());
         System.out.println("you lose loser ");
-    }
-    public static void main(String[] args) {
-        CowsAndBullsGame cowsAndBulls = new CowsAndBullsGame();
-        cowsAndBulls.start();
     }
 
     public void fileOutput(Map<String,ArrayList<String>> outputList,String playerNumber, String computerNumber){
@@ -94,25 +87,28 @@ public class CowsAndBullsGame{
             }
         }
         if (yesOrNo.equalsIgnoreCase("y")) {
-            System.out.println("Please enter file name: ");
-            String fileName = Keyboard.readInput();
-            try {
-                PrintWriter writer = new PrintWriter(new FileWriter(fileName));
-                writer.println("Bulls and Cows game result.");
-                writer.println(String.format("Your code: %s", playerNumber));
-                writer.println(String.format("Computer code: %s", computerNumber));
-                for (Map.Entry<String, ArrayList<String>> element : outputList.entrySet()) {
-                    writer.println("---");
-                    writer.println("turn " + element.getKey());
-                    ArrayList<String> elementList = element.getValue();
-                    writer.println((String.format("You guessed %s, scoring %s bulls and %s cows", elementList.get(0), elementList.get(1), elementList.get(2))));
-                    writer.println((String.format("Computer guessed %s, scoring %s bulls and %s cows", elementList.get(3), elementList.get(4), elementList.get(5))));
+            while(true) {
+                System.out.println("Please enter file name: ");
+                String fileName = Keyboard.readInput();
+                try {
+                    PrintWriter writer = new PrintWriter(new FileWriter(fileName));
+                    writer.println("Bulls and Cows game result.");
+                    writer.println(String.format("Your code: %s", playerNumber));
+                    writer.println(String.format("Computer code: %s", computerNumber));
+                    for (Map.Entry<String, ArrayList<String>> element : outputList.entrySet()) {
+                        writer.println("---");
+                        writer.println("turn " + element.getKey());
+                        ArrayList<String> elementList = element.getValue();
+                        writer.println((String.format("You guessed %s, scoring %s bulls and %s cows", elementList.get(0), elementList.get(1), elementList.get(2))));
+                        writer.println((String.format("Computer guessed %s, scoring %s bulls and %s cows", elementList.get(3), elementList.get(4), elementList.get(5))));
+                    }
+                    writer.close();
+                    System.out.println("File saved under \"" + fileName + "\"");
+                    System.out.println("Thanks for playing");
+                    return;
+                } catch (IOException e) {
+                    System.out.println("This is not a valid file name");
                 }
-                writer.close();
-                System.out.println("File saved under \"" + fileName + "\"");
-                System.out.println("Thanks for playing");
-            } catch (IOException e) {
-                System.out.println("IO error");
             }
         }else {
             System.out.println("Thanks for playing");
