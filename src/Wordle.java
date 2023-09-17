@@ -9,6 +9,7 @@ public class Wordle extends Number{
 
     public ArrayList<String> possibleAnswers;
     public String correctWord;
+    public boolean playerWon;
     public Wordle(){
         this.possibleAnswers = importWordsList();
     }
@@ -87,11 +88,13 @@ public class Wordle extends Number{
             if (bulls == 5){
                 System.out.println("you guessed the right number!");
                 System.out.println("you win!");
+                this.playerWon = true;
                 fileOutput(output,correctWord);
                 return;
             }
             guessCount++;
         }
+        this.playerWon = false;
         System.out.println("you did not guess the right word :( you lose");
         fileOutput(output, correctWord);
     }
@@ -118,6 +121,11 @@ public class Wordle extends Number{
                     writer.println("turn " + element.getKey());
                     ArrayList<String> elementList = element.getValue();
                     writer.println((String.format("You guessed %s, scoring %s bulls and %s cows", elementList.get(0), elementList.get(1), elementList.get(2))));
+                }
+                if (playerWon){
+                    writer.println("thy doth win-eth good sir");
+                } else if (!playerWon) {
+                    writer.println("thy doth lose-eth good sir");
                 }
                 writer.close();
                 System.out.println("File saved under \"" + fileName + "\"");

@@ -49,7 +49,7 @@ public class CowsAndBullsGame{
             output.get(x).add(String.valueOf(playerCows));
 
             if(playerBulls == 4){
-                System.out.println("You win! :)");
+                System.out.println("Player doth win-eth! :)");
                 this.playerWin = 1;
                 fileOutput(output, playersNumber.getNumber(),computersNumber.getNumber());
                 return;
@@ -70,7 +70,7 @@ public class CowsAndBullsGame{
             System.out.println("-----------");
 
             if(computerBulls == 4){
-                System.out.println("Computer wins! :)");
+                System.out.println("Computer doth win-eth, thy suck-eth");
                 this.playerWin = 2;
                 fileOutput(output, playersNumber.getNumber(),computersNumber.getNumber());
                 return;
@@ -79,7 +79,7 @@ public class CowsAndBullsGame{
 
         this.playerWin = 3;
         fileOutput(output, playersNumber.getNumber(),computersNumber.getNumber());
-        System.out.println("Technically a draw but feels like you lost doesn't it loser ");
+        System.out.println("Tis a draw-eth");
     }
 
     public void fileOutput(Map<String,ArrayList<String>> outputList,String playerNumber, String computerNumber){
@@ -111,11 +111,11 @@ public class CowsAndBullsGame{
                         }
                     }
                     if (this.playerWin == 1){
-                        writer.println("Player wins! :)");
+                        writer.println("Player doth win-eth! :)");
                     } else if (this.playerWin == 2) {
-                        writer.println("Computer wins, you suck");
+                        writer.println("Computer doth win-eth, thy suck-eth");
                     } else if(this.playerWin == 3){
-                        writer.println("its a draw");
+                        writer.println("Tis a draw-eth");
                     }
                     writer.close();
                     System.out.println("File saved under \"" + fileName + "\"");

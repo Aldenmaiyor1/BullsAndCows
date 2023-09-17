@@ -1,7 +1,24 @@
-Bulls and Cows game result.
-Your code: 1234
-Computer code: 2863
+Wordle game result.
+Correct word: skiff
 ---
 turn 1
-You guessed 2863, scoring 4 bulls and 0 cows
-Player wins! :)
+You guessed aasdf, scoring 1 bulls and 2 cows
+---
+turn 2
+You guessed asdfg, scoring 1 bulls and 2 cows
+---
+turn 3
+You guessed asdfg, scoring 1 bulls and 2 cows
+---
+turn 4
+You guessed asdfg, scoring 1 bulls and 2 cows
+---
+turn 5
+You guessed asdfs, scoring 1 bulls and 2 cows
+---
+turn 6
+You guessed asdfg, scoring 1 bulls and 2 cows
+---
+turn 7
+You guessed asdfg, scoring 1 bulls and 2 cows
+thy doth lose-eth good sir
