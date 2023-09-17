@@ -9,6 +9,8 @@ import java.util.Map;
 
 public class CowsAndBullsGame{
 
+    private int playerWin;
+
     public void start(){
         PlayerNumber playersNumber = new PlayerNumber();
         ComputerNumber computersNumber = new ComputerNumber();
@@ -23,6 +25,7 @@ public class CowsAndBullsGame{
         playersNumber.setNumber(playerBaseNumber);
         System.out.println(String.format("your code is %s", playersNumber.getNumber()));
         computersNumber.setNumber(computersNumber.generateNumber());
+        System.out.println("computers code is " + computersNumber.getNumber());
 
         /*alter running code to include winning conditions based on turn, ie if i go first then i win*/
         int playerBulls = 0;
@@ -47,6 +50,7 @@ public class CowsAndBullsGame{
 
             if(playerBulls == 4){
                 System.out.println("You win! :)");
+                this.playerWin = 1;
                 fileOutput(output, playersNumber.getNumber(),computersNumber.getNumber());
                 return;
             }
@@ -67,13 +71,15 @@ public class CowsAndBullsGame{
 
             if(computerBulls == 4){
                 System.out.println("Computer wins! :)");
+                this.playerWin = 2;
                 fileOutput(output, playersNumber.getNumber(),computersNumber.getNumber());
                 return;
-
             }
         }
+
+        this.playerWin = 3;
         fileOutput(output, playersNumber.getNumber(),computersNumber.getNumber());
-        System.out.println("you lose loser ");
+        System.out.println("Technically a draw but feels like you lost doesn't it loser ");
     }
 
     public void fileOutput(Map<String,ArrayList<String>> outputList,String playerNumber, String computerNumber){
@@ -100,7 +106,16 @@ public class CowsAndBullsGame{
                         writer.println("turn " + element.getKey());
                         ArrayList<String> elementList = element.getValue();
                         writer.println((String.format("You guessed %s, scoring %s bulls and %s cows", elementList.get(0), elementList.get(1), elementList.get(2))));
-                        writer.println((String.format("Computer guessed %s, scoring %s bulls and %s cows", elementList.get(3), elementList.get(4), elementList.get(5))));
+                        if(elementList.size() > 3) {
+                            writer.println((String.format("Computer guessed %s, scoring %s bulls and %s cows", elementList.get(3), elementList.get(4), elementList.get(5))));
+                        }
+                    }
+                    if (this.playerWin == 1){
+                        writer.println("Player wins! :)");
+                    } else if (this.playerWin == 2) {
+                        writer.println("Computer wins, you suck");
+                    } else if(this.playerWin == 3){
+                        writer.println("its a draw");
                     }
                     writer.close();
                     System.out.println("File saved under \"" + fileName + "\"");

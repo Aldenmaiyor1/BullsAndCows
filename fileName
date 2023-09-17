@@ -1,20 +1,7 @@
-Wordle game result.
-Correct word: skirt
+Bulls and Cows game result.
+Your code: 1234
+Computer code: 2863
 ---
 turn 1
-You guessed asdas, scoring 0 bulls and 1 cows
----
-turn 2
-You guessed skirs, scoring 4 bulls and 0 cows
----
-turn 3
-You guessed skiry, scoring 4 bulls and 0 cows
----
-turn 4
-You guessed skkir, scoring 2 bulls and 2 cows
----
-turn 5
-You guessed heheh, scoring 0 bulls and 0 cows
----
-turn 6
-You guessed skirt, scoring 5 bulls and 0 cows
+You guessed 2863, scoring 4 bulls and 0 cows
+Player wins! :)
